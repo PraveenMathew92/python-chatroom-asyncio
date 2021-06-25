@@ -1,3 +1,7 @@
+"""
+File to demonstrate the coroutines api in python
+"""
+
 import asyncio
 
 
@@ -43,3 +47,20 @@ async def gather_runner():
 
 
 asyncio.run(gather_runner())
+
+
+"""
+OUTPUT:
+
+entering $coroutine_call
+exited coroutine_call
+entering $task_call
+exited task_call
+
+                        Running with gather task
+
+entering $gather
+entering $task_call
+exited gather
+exited task_call
+"""
