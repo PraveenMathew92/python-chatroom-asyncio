@@ -1,4 +1,4 @@
-class ConnectionPool:
+class ChatRoom:
     def __init__(self):
         self.active_users = set()
 

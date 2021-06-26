@@ -1,14 +1,17 @@
-from chatroom.ConnectionPool import ConnectionPool
+from chatroom.ChatRoom import ChatRoom
 
 
 class User:
     def __init__(self, name: str):
         self.name = name
-        self.pool: ConnectionPool = None
+        self.chatroom: ChatRoom = None
 
-    def join(self, pool: ConnectionPool):
-        pool.add_user(self)
-        self.pool = pool
+    def join(self, chatroom: ChatRoom):
+        chatroom.add_user(self)
+        self.chatroom = chatroom
 
-    def leave_pool(self):
-        self.pool.remove_user(self)
+    def leave(self):
+        self.chatroom.remove_user(self)
+
+    def send_message(self, message):
+        pass
