@@ -14,4 +14,4 @@ class User:
         self.chatroom.remove_user(self)
 
     def send_message(self, message):
-        pass
+        self.chatroom.send_message(self, message)

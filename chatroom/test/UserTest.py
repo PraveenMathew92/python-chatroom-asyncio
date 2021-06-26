@@ -1,4 +1,6 @@
 import unittest
+from unittest.mock import Mock
+
 from chatroom.ChatRoom import ChatRoom
 from chatroom.User import User
 
@@ -16,6 +18,21 @@ class MyTestCase(unittest.TestCase):
         user.join(chat_room)
         user.leave()
         self.assertFalse(user in chat_room.get_all_active_users())
+
+    def test_user_send_message(self):
+        message = "Message from the user"
+        chatroom = ChatRoom()
+        test_user_1 = User("test-user-1")
+        test_user_2 = User("test-user-2")
+        test_user_1.join(chatroom)
+        test_user_2.join(chatroom)
+        notifier = Mock()
+
+        chatroom.add_user_notifier(test_user_2, notifier)
+
+        test_user_1.send_message(message)
+
+        notifier.send_message.assert_called_with(message)
 
 
 if __name__ == '__main__':
