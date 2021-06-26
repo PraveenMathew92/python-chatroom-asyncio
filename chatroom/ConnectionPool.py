@@ -7,3 +7,6 @@ class ConnectionPool:
 
     def add_user(self, user):
         self.active_users.add(user)
+
+    def remove_user(self, user):
+        self.active_users.remove(user)

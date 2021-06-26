@@ -10,6 +10,13 @@ class MyTestCase(unittest.TestCase):
         user.join(pool)
         self.assertTrue(user in pool.get_all_active_users())
 
+    def test_user_leave_joined_pool(self):
+        pool = ConnectionPool()
+        user = User("test-user-1")
+        user.join(pool)
+        user.leave_pool()
+        self.assertFalse(user in pool.get_all_active_users())
+
 
 if __name__ == '__main__':
     unittest.main()
