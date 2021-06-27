@@ -7,3 +7,6 @@ class Notifier:
 
     def new_user_notification(self, newuser: User):
         pass
+
+    def user_removed_notification(self, user):
+        pass

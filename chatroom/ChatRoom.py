@@ -15,6 +15,9 @@ class ChatRoom:
         self.users_with_notifiers[user] = None
 
     def remove_user(self, user):
+        notifiers = filter(None, self.users_with_notifiers.values())
+        for notifier in notifiers:
+            notifier.user_removed_notification(user)
         del self.users_with_notifiers[user]
 
     def add_user_notifier(self, user, notifier: Notifier):

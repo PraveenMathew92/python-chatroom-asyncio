@@ -17,6 +17,18 @@ class MyTestCase(unittest.TestCase):
         chatroom.add_user(test_user_2)
         notifier.new_user_notification.assert_called_with(test_user_2)
 
+    def test_remove_user_notifies_others(self):
+        chatroom = ChatRoom()
+        test_user_1 = User("test-user-1")
+        test_user_2 = User("test-user-2")
+        notifier = Mock()
+        test_user_1.join(chatroom)
+        test_user_2.join(chatroom)
+        chatroom.add_user_notifier(test_user_1, notifier)
+
+        chatroom.remove_user(test_user_2)
+        notifier.user_removed_notification.assert_called_with(test_user_2)
+
 
 if __name__ == '__main__':
     unittest.main()
