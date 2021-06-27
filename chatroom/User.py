@@ -1,12 +1,9 @@
-from chatroom.ChatRoom import ChatRoom
-
-
 class User:
     def __init__(self, name: str):
         self.name = name
-        self.chatroom: ChatRoom = None
+        self.chatroom = None
 
-    def join(self, chatroom: ChatRoom):
+    def join(self, chatroom):
         chatroom.add_user(self)
         self.chatroom = chatroom
 

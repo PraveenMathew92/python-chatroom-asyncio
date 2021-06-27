@@ -9,6 +9,9 @@ class ChatRoom:
         return self.users_with_notifiers.keys()
 
     def add_user(self, user):
+        notifiers = filter(None, self.users_with_notifiers.values())
+        for notifier in notifiers:
+            notifier.new_user_notification(user)
         self.users_with_notifiers[user] = None
 
     def remove_user(self, user):
