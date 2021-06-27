@@ -32,7 +32,7 @@ class MyTestCase(unittest.TestCase):
 
         test_user_1.send_message(message)
 
-        notifier.send_message.assert_called_with(message)
+        notifier.send_message.assert_called_with(test_user_1, message)
 
 
 if __name__ == '__main__':

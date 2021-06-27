@@ -18,10 +18,18 @@ async def server_connection(reader, writer):
     writer.write(b"> Enter username: ")
     username = await reader.readuntil(b"\n")
 
-    terminal_notifier = TerminalNotifier()
-    user = User(username)
+    terminal_notifier = TerminalNotifier(writer)
+    user = User(username.decode().rstrip())
     user.join(CHATROOM)
     CHATROOM.add_user_notifier(user, terminal_notifier)
+
+    while True:
+        try:
+            message = await reader.readuntil(b"\n")
+            user.send_message(message.decode())
+        except asyncio.exceptions.IncompleteReadError:
+            user.leave()
+            break
 
 
 async def main():

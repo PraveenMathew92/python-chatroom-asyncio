@@ -21,8 +21,8 @@ class ChatRoom:
     def add_user_notifier(self, user, notifier: Notifier):
         self.users_with_notifiers[user] = notifier
 
-    def send_message(self, user, message):
-        message_sender = lambda notifier: notifier.send_message(message)
+    def send_message(self, sender, message):
+        message_sender = lambda notifier: notifier.send_message(sender, message)
         self.__send_notification_to_all_users(message_sender)
 
     def __send_notification_to_all_users(self, notifier_function_caller):
