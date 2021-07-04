@@ -6,7 +6,7 @@ class ChatRoom:
         self.users_with_notifiers = {}
 
     def get_all_active_users(self):
-        return self.users_with_notifiers.keys()
+        return set(self.users_with_notifiers.keys())
 
     def add_user(self, user):
         add_user_notification_sender = lambda notifier: notifier.new_user_notification(user)

@@ -2,7 +2,6 @@ import asyncio
 
 import sys, os, inspect
 
-
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
@@ -26,7 +25,11 @@ async def server_connection(reader, writer):
     while True:
         try:
             message = await reader.readuntil(b"\n")
-            user.send_message(message.decode())
+            message = message.decode()
+            if message == "\\list\n":
+                terminal_notifier.list_chatroom_users(CHATROOM, user)
+                continue
+            user.send_message(message)
         except asyncio.exceptions.IncompleteReadError:
             user.leave()
             break

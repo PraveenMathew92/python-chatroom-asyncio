@@ -10,3 +10,6 @@ class Notifier:
 
     def user_removed_notification(self, user):
         pass
+
+    def list_chatroom_users(self, chatroom, requesting_user):
+        pass
